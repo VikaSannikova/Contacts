@@ -25,6 +25,7 @@ class ContactDetailViewController: UIViewController {
 
     @IBAction func doneBack(_ sender: Any) {
         performSegue(withIdentifier: "unwindToContacts", sender: self)
+        NotificationCenter.default.post(name: Notification.Name("editContact"), object: contact)
     }
     
     @IBAction func deleteContact(_ sender: Any) {

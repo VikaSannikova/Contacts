@@ -8,11 +8,13 @@
 import UIKit
 
 class RecentCallsTableViewController: UITableViewController {
-    var recentCalls: [(Contact,String)] = []
+//    var recentCalls: [(Contact,String)] = []
+    var recentCalls = [(contact: Contact, timeOfCall: String)]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        NotificationCenter.default.addObserver(self, selector: #selector(notificationReceived(_:)), name: Notification.Name("addContact"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(addContactToRecentCallList(notification:)), name: Notification.Name("addContact"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(editContactInRecentCallList(notification:)), name: Notification.Name("editContact"), object: nil)
     }
 
     // MARK: - Table view data source
@@ -29,11 +31,6 @@ class RecentCallsTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "RecentCallCell", for: indexPath)
         let contact = recentCalls[indexPath.row]
-//        let callTime = Date()
-//        let calendar = Calendar.current
-//        let hour = calendar.component(.hour, from: callTime)
-//        let minutes = calendar.component(.minute, from: callTime)
-//        let time = "\(hour):\(minutes)"
         cell.textLabel?.text = contact.0.name
         cell.detailTextLabel?.text = contact.1
         return cell
@@ -41,10 +38,22 @@ class RecentCallsTableViewController: UITableViewController {
     
     //MARK: - Observe Notifications
     
-    @objc func notificationReceived(_ notification : Notification){
-        print(123)
+    @objc func addContactToRecentCallList( notification : Notification){
         guard let recentCall = notification.object as? (Contact,String) else { return }
         recentCalls.append(recentCall)
+        self.tableView.reloadData()
+    }
+    
+    @objc func editContactInRecentCallList(notification: Notification) {
+        guard let recentCall = notification.object as? Contact else { return }
+        //Как по-другому обновить элемент массива?
+        for var (index,item) in recentCalls.enumerated() {
+            if item.0.id == recentCall.id {
+                item.0.name = recentCall.name
+                item.0.number = recentCall.number
+                recentCalls[index].contact = item.0
+            }
+        }
         self.tableView.reloadData()
     }
 
