@@ -31,6 +31,7 @@ class ContactDetailViewController: UIViewController {
     @IBAction func deleteContact(_ sender: Any) {
         isDeleted = true
         performSegue(withIdentifier: "unwindToContacts", sender: self)
+        NotificationCenter.default.post(name: Notification.Name("deleteContact"), object: contact)
     }
     @IBAction func callContact(_ sender: UIButton) {
         guard let callNumber = contactNumber.text, let url = URL(string: "tel://\(callNumber)") else { return }

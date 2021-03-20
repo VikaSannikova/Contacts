@@ -15,6 +15,7 @@ class RecentCallsTableViewController: UITableViewController {
         super.viewDidLoad()
         NotificationCenter.default.addObserver(self, selector: #selector(addContactToRecentCallList(notification:)), name: Notification.Name("addContact"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(editContactInRecentCallList(notification:)), name: Notification.Name("editContact"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(deleteContactFromRecentCallList(notification:)), name: Notification.Name("deleteContact"), object: nil)
     }
 
     // MARK: - Table view data source
@@ -47,7 +48,7 @@ class RecentCallsTableViewController: UITableViewController {
     @objc func editContactInRecentCallList(notification: Notification) {
         guard let recentCall = notification.object as? Contact else { return }
         //Как по-другому обновить элемент массива?
-        for var (index,item) in recentCalls.enumerated() {
+        for var (index, item) in recentCalls.enumerated() {
             if item.0.id == recentCall.id {
                 item.0.name = recentCall.name
                 item.0.number = recentCall.number
@@ -57,4 +58,16 @@ class RecentCallsTableViewController: UITableViewController {
         self.tableView.reloadData()
     }
 
+    @objc func deleteContactFromRecentCallList(notification: Notification) {
+        guard let recentCall = notification.object as? Contact else { return }
+        //Костыль
+        var newRecentCalls = [(contact: Contact, timeOfCall: String)]()
+        for var (index,item) in recentCalls.enumerated() {
+            if item.0.id != recentCall.id {
+                newRecentCalls.append(item)
+            }
+        }
+        recentCalls = newRecentCalls
+        self.tableView.reloadData()
+    }
 }
