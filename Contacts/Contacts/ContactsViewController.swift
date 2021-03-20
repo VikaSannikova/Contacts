@@ -12,7 +12,7 @@ class ContactsViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        let vika = Contact(name: "Vika Sannikova", number: "8-800-355-35-35")
+        let vika = Contact(name: "Vika Sannikova", number: "88003553535")
         contacts.append(vika)
         tableView.reloadData()
     }

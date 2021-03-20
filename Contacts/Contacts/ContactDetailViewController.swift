@@ -20,6 +20,9 @@ class ContactDetailViewController: UIViewController {
         contactNumber.text = contact?.number
 
     }
+    
+    //MARK: - Button actions
+
     @IBAction func doneBack(_ sender: Any) {
         performSegue(withIdentifier: "unwindToContacts", sender: self)
     }
@@ -27,6 +30,18 @@ class ContactDetailViewController: UIViewController {
     @IBAction func deleteContact(_ sender: Any) {
         isDeleted = true
         performSegue(withIdentifier: "unwindToContacts", sender: self)
+    }
+    @IBAction func callContact(_ sender: UIButton) {
+        guard let callNumber = contactNumber.text, let url = URL(string: "tel://\(callNumber)") else { return }
+        UIApplication.shared.open(url)
+        print("WE MAKE CALL")
+        let callTime = Date()
+        let calendar = Calendar.current
+        let hour = calendar.component(.hour, from: callTime)
+        let minutes = calendar.component(.minute, from: callTime)
+        let time = "\(hour):\(minutes)"
+        let recentCall: (Contact?, String) = (contact, time)
+        NotificationCenter.default.post(name: Notification.Name("addContact"), object: recentCall)
     }
     
     //MARK: - Navigation
