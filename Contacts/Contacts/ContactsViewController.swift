@@ -8,19 +8,6 @@
 import UIKit
 import Foundation
 import Dispatch
-struct JSONContact: Codable {
-    let firstName: String
-    let lastName: String
-    let email: String
-    let phone: String
-    
-    enum CodingKeys: String, CodingKey {
-        case firstName = "firstname"
-        case lastName = "lastname"
-        case email
-        case phone
-    }
-}
 protocol ContactsRepository {
     func getContacts() throws -> [Contact]
 }
