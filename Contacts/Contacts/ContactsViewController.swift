@@ -6,15 +6,92 @@
 //
 
 import UIKit
+import Foundation
+import Dispatch
+struct JSONContact: Codable {
+    let firstName: String
+    let lastName: String
+    let email: String
+    let phone: String
+    
+    enum CodingKeys: String, CodingKey {
+        case firstName = "firstname"
+        case lastName = "lastname"
+        case email
+        case phone
+    }
+}
+protocol ContactsRepository {
+    func getContacts() throws -> [Contact]
+}
+class GistConstactsRepository: ContactsRepository {
+    private let path: String
+    init(path: String) {
+        self.path = path
+    }
+    func getContacts() throws -> [Contact] {
+        let sem = DispatchSemaphore(value: 0)
+        let url = URL(string: path)
+        let request = URLRequest(url: url!)
+        var result: [Contact] = []
+        let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+                defer {
+                    sem.signal()
+                }
+                guard let data = data else {
+                    return
+                }
+                do{
+                    let postData = try JSONDecoder().decode([Contact].self, from: data)
+                    result = postData
+                } catch  {
+                    let error = error
+                    print(error.localizedDescription)
+                }
+        }
+        task.resume()
+        let timeout: DispatchTime = .now() + .seconds(5)
+        sem.wait(timeout: timeout)
+        return result
+    }
+}
 
 class ContactsViewController: UITableViewController {
     var contacts : [Contact] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        let vika = Contact(name: "Vika Sannikova", number: "88003553535")
+        let vika = Contact(firstName: "Vika", lastName: "Sannikova", email: "v.sannikova", phone: "88003553535")
         contacts.append(vika)
-        tableView.reloadData()
+        
+        let contactsRepo = GistConstactsRepository(path: "https://gist.githubusercontent.com/artgoncharov/d257658423edd46a9ead5f721b837b8c/raw/c38ace33a7c871e4ad3b347fc4cd970bb45561a3/contacts_data.json")
+        //TODO: call with GCD & OperationQueue
+        
+//        let queueBackGround = DispatchQueue.global(qos: .background)
+//        queueBackGround.async {
+//            do {
+//                self.contacts = try contactsRepo.getContacts()
+//            } catch {
+//                let error = error
+//                print(error.localizedDescription)
+//            }
+//            // обновление таблицы только на мэйн потоке
+//            DispatchQueue.main.async {
+//                self.tableView.reloadData()
+//            }
+//        }
+        OperationQueue().addOperation {
+            do {
+                self.contacts = try contactsRepo.getContacts()
+            } catch {
+                let error = error
+                print(error.localizedDescription)
+            }
+            // обновление таблицы только на мэйн потоке
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+        }
     }
     
     // MARK: - Table view data source
@@ -31,8 +108,8 @@ class ContactsViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ContactCell", for: indexPath)
         let contact = contacts[indexPath.row]
-        cell.textLabel?.text = contact.name
-        cell.detailTextLabel?.text = contact.number
+        cell.textLabel?.text = contact.firstName
+        cell.detailTextLabel?.text = contact.phone
         return cell
     }
     
@@ -47,7 +124,7 @@ class ContactsViewController: UITableViewController {
                 guard let name = viewController.nameTextField.text, let number = viewController.numberTextField.text else {
                     return
                 }
-                let contact = Contact(name: name, number: number)
+                let contact = Contact(firstName: name, lastName: "SMTH", email: "SMTH", phone: number)
                 if let indexPath = viewController.indexPath {
                     contacts[indexPath.row] = contact
                 } else {
@@ -81,11 +158,4 @@ class ContactsViewController: UITableViewController {
             viewController.indexPath = index
         }
     }
-    
-    
-    
-    
-    
-    
-
 }

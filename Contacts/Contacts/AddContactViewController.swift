@@ -23,8 +23,8 @@ class AddContactViewController: UIViewController {
         super.viewDidLoad()
         titleLabel.text = titleText
         if let editContact = contact {
-            nameTextField.text = editContact.name
-            numberTextField.text = editContact.number
+            nameTextField.text = editContact.firstName
+            numberTextField.text = editContact.phone
         }
     }
     

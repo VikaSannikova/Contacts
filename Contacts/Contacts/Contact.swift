@@ -6,15 +6,26 @@
 //
 
 import Foundation
-struct Contact {
+struct Contact: Codable {
     private static var hashCode: Int = 0
-    var id: Int
-    var name: String
-    var number: String
+    var id: Int = 0
+    var firstName: String
+    var lastName: String
+    var email: String
+    var phone: String
+
+    enum CodingKeys: String, CodingKey {
+        case firstName = "firstname"
+        case lastName = "lastname"
+        case email
+        case phone
+    }
     
-    init ( name: String, number: String) {
-        self.name = name
-        self.number = number
+    init ( firstName: String, lastName: String, email: String, phone: String) {
+        self.firstName = firstName
+        self.lastName = lastName
+        self.email = email
+        self.phone = phone
         self.id = Contact.hashCode
         Contact.hashCode += 1
        }

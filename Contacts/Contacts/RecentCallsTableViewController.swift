@@ -32,7 +32,7 @@ class RecentCallsTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "RecentCallCell", for: indexPath)
         let contact = recentCalls[indexPath.row]
-        cell.textLabel?.text = contact.0.name
+        cell.textLabel?.text = contact.0.firstName
         cell.detailTextLabel?.text = contact.1
         return cell
     }
@@ -50,8 +50,8 @@ class RecentCallsTableViewController: UITableViewController {
         //Как по-другому обновить элемент массива?
         for var (index, item) in recentCalls.enumerated() {
             if item.0.id == recentCall.id {
-                item.0.name = recentCall.name
-                item.0.number = recentCall.number
+                item.0.firstName = recentCall.firstName
+                item.0.phone = recentCall.phone
                 recentCalls[index].contact = item.0
             }
         }

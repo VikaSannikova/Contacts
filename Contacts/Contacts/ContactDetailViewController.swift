@@ -16,8 +16,8 @@ class ContactDetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        contactName.text = contact?.name
-        contactNumber.text = contact?.number
+        contactName.text = contact?.firstName
+        contactNumber.text = contact?.phone
 
     }
     
@@ -34,7 +34,13 @@ class ContactDetailViewController: UIViewController {
         NotificationCenter.default.post(name: Notification.Name("deleteContact"), object: contact)
     }
     @IBAction func callContact(_ sender: UIButton) {
-        guard let callNumber = contactNumber.text, let url = URL(string: "tel://\(callNumber)") else { return }
+        guard let callNumber = contactNumber.text else {return}
+        var num = callNumber.replacingOccurrences(of: " ", with: "", options: NSString.CompareOptions.literal, range: nil)
+        num = num.replacingOccurrences(of: "(", with: "", options: NSString.CompareOptions.literal, range: nil)
+        num = num.replacingOccurrences(of: ")", with: "", options: NSString.CompareOptions.literal, range: nil)
+        num = num.replacingOccurrences(of: "-", with: "", options: NSString.CompareOptions.literal, range: nil)
+                
+        guard let url = URL(string: "tel://\(num)") else { return }
         UIApplication.shared.open(url)
         print("WE MAKE CALL")
         let callTime = Date()
@@ -67,10 +73,10 @@ class ContactDetailViewController: UIViewController {
                 guard let name = viewController.nameTextField.text, let number = viewController.numberTextField.text else {
                     return
                 }
-                contact?.name = name
-                contact?.number = number
-                contactName.text = contact?.name
-                contactNumber.text = contact?.number
+                contact?.firstName = name
+                contact?.phone = number
+                contactName.text = contact?.firstName
+                contactNumber.text = contact?.phone
             default:
                 print("what")
             }
