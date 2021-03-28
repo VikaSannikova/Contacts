@@ -37,8 +37,9 @@ class GistConstactsRepository: ContactsRepository {
                 }
         }
         task.resume()
-        let timeout: DispatchTime = .now() + .seconds(5)
-        sem.wait(timeout: timeout)
+        //let timeout: DispatchTime = .now() + .seconds(25)
+        //sem.wait(timeout: timeout)
+        sem.wait()
         return result
     }
 }
@@ -48,12 +49,16 @@ class ContactsViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         let vika = Contact(firstName: "Vika", lastName: "Sannikova", email: "v.sannikova", phone: "88003553535")
         contacts.append(vika)
+
+        let vika1 = Contact(firstName: "Vika", lastName: "Sannikova", email: "v.sannikova", phone: "88003553535")
+        contacts.append(vika1)
         
-        let contactsRepo = GistConstactsRepository(path: "https://gist.githubusercontent.com/artgoncharov/d257658423edd46a9ead5f721b837b8c/raw/c38ace33a7c871e4ad3b347fc4cd970bb45561a3/contacts_data.json")
-        //TODO: call with GCD & OperationQueue
-        
+        tableView.reloadData()
+    
+                
 //        let queueBackGround = DispatchQueue.global(qos: .background)
 //        queueBackGround.async {
 //            do {
@@ -67,18 +72,16 @@ class ContactsViewController: UITableViewController {
 //                self.tableView.reloadData()
 //            }
 //        }
-        OperationQueue().addOperation {
-            do {
-                self.contacts = try contactsRepo.getContacts()
-            } catch {
-                let error = error
-                print(error.localizedDescription)
-            }
-            // обновление таблицы только на мэйн потоке
-            DispatchQueue.main.async {
-                self.tableView.reloadData()
-            }
-        }
+        
+//        let opQueue = OperationQueue()
+//        let myOperation = MyOperation()
+//        opQueue.addOperation(myOperation)
+//        myOperation.completionBlock = {
+//            self.contacts = myOperation.contacts
+//            DispatchQueue.main.async {
+//                self.tableView.reloadData()
+//            }
+//        }
     }
     
     // MARK: - Table view data source

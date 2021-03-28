@@ -48,7 +48,7 @@ class ContactDetailViewController: UIViewController {
         let hour = calendar.component(.hour, from: callTime)
         let minutes = calendar.component(.minute, from: callTime)
         let time = "\(hour):\(minutes)"
-        let recentCall: (Contact?, String) = (contact, time)
+        let recentCall = RecentCall(contact: contact, time: time)
         NotificationCenter.default.post(name: Notification.Name("addContact"), object: recentCall)
     }
     

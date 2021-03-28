@@ -6,8 +6,7 @@
 //
 
 import Foundation
-struct Contact: Codable {
-    private static var hashCode: Int = 0
+struct Contact: Codable, Hashable {
     var id: Int = 0
     var firstName: String
     var lastName: String
@@ -26,7 +25,14 @@ struct Contact: Codable {
         self.lastName = lastName
         self.email = email
         self.phone = phone
-        self.id = Contact.hashCode
-        Contact.hashCode += 1
+        self.id = self.hashValue
        }
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(firstName)
+        hasher.combine(lastName)
+        hasher.combine(email)
+        hasher.combine(phone)
+        hasher.combine(arc4random())
+    }
 }
