@@ -73,15 +73,15 @@ class ContactsViewController: UITableViewController {
 //            }
 //        }
         
-//        let opQueue = OperationQueue()
-//        let myOperation = MyOperation()
-//        opQueue.addOperation(myOperation)
-//        myOperation.completionBlock = {
-//            self.contacts = myOperation.contacts
-//            DispatchQueue.main.async {
-//                self.tableView.reloadData()
-//            }
-//        }
+        let opQueue = OperationQueue()
+        let myOperation = MyOperation()
+        opQueue.addOperation(myOperation)
+        myOperation.completionBlock = {
+            self.contacts = myOperation.contacts
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+        }
     }
     
     // MARK: - Table view data source

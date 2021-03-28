@@ -17,8 +17,6 @@ struct RecentCall {
 }
 
 class RecentCallsTableViewController: UITableViewController {
-//    var recentCalls: [(Contact,String)] = []
-//    var recentCalls = [(contact: Contact, timeOfCall: String)]()
     var recentCalls : [RecentCall] = []
 
     override func viewDidLoad() {
