@@ -3,7 +3,21 @@
    version = "1.0">
    <ContextStates>
       <ContextState
-         contextName = "ContactDetailViewController.prepare(for:sender:):ContactDetailViewController.swift">
+         contextName = "closure #1 in closure #1 in ContactsViewController.viewDidLoad():ContactsViewController.swift">
+      </ContextState>
+      <ContextState
+         contextName = "ChooseDownloadViewController.prepare(for:sender:):ChooseDownloadViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "viewTabBarController.customizableViewControllers">
+            </PersistentString>
+            <PersistentString
+               value = "viewNavigationController">
+            </PersistentString>
+            <PersistentString
+               value = "viewtabBarController.tabBarController">
+            </PersistentString>
+         </PersistentStrings>
       </ContextState>
       <ContextState
          contextName = "ContactDetailViewController.doneBack(_:):ContactDetailViewController.swift">
@@ -13,14 +27,6 @@
          <PersistentStrings>
             <PersistentString
                value = "segue.destination">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "ContactDetailViewController.backToDetails(segue:):ContactDetailViewController.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "segue.source">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -36,7 +42,18 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "closure #1 in closure #1 in ContactsViewController.viewDidLoad():ContactsViewController.swift">
+         contextName = "ContactDetailViewController.backToDetails(segue:):ContactDetailViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "segue.source">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "__pthread_kill:(null)">
+      </ContextState>
+      <ContextState
+         contextName = "ContactDetailViewController.prepare(for:sender:):ContactDetailViewController.swift">
       </ContextState>
    </ContextStates>
 </VariablesViewState>

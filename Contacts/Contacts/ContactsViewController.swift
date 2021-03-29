@@ -46,32 +46,48 @@ class GistConstactsRepository: ContactsRepository {
 
 class ContactsViewController: UITableViewController {
     var contacts : [Contact] = []
+    var isGCD: Bool = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let vika = Contact(firstName: "Vika", lastName: "Sannikova", email: "v.sannikova", phone: "88003553535")
-        contacts.append(vika)
+//        let vika = Contact(firstName: "Vika", lastName: "Sannikova", email: "v.sannikova", phone: "88003553535")
+//        contacts.append(vika)
+//
+//        let vika1 = Contact(firstName: "Vika", lastName: "Sannikova", email: "v.sannikova", phone: "88003553535")
+//        contacts.append(vika1)
+//        tableView.reloadData()
+        let contactsRepo = GistConstactsRepository(path: "https://gist.githubusercontent.com/artgoncharov/d257658423edd46a9ead5f721b837b8c/raw/c38ace33a7c871e4ad3b347fc4cd970bb45561a3/contacts_data.json")
+        if isGCD {
+            let queueBackGround = DispatchQueue.global(qos: .background)
+            queueBackGround.async {
+                do {
+                    self.contacts = try contactsRepo.getContacts()
+                } catch {
+                    let error = error
+                    print(error.localizedDescription)
+                }
+                // обновление таблицы только на мэйн потоке
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
+            }
+        } else {
+            let queueBackGround = DispatchQueue.global(qos: .background)
+            queueBackGround.async {
+            do {
+                self.contacts = try contactsRepo.getContacts()
+            } catch {
+                let error = error
+                print(error.localizedDescription)
+            }
+            // обновление таблицы только на мэйн потоке
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
+            }
+        }
 
-        let vika1 = Contact(firstName: "Vika", lastName: "Sannikova", email: "v.sannikova", phone: "88003553535")
-        contacts.append(vika1)
-        
-        tableView.reloadData()
-    
-                
-//        let queueBackGround = DispatchQueue.global(qos: .background)
-//        queueBackGround.async {
-//            do {
-//                self.contacts = try contactsRepo.getContacts()
-//            } catch {
-//                let error = error
-//                print(error.localizedDescription)
-//            }
-//            // обновление таблицы только на мэйн потоке
-//            DispatchQueue.main.async {
-//                self.tableView.reloadData()
-//            }
-//        }
         
         let opQueue = OperationQueue()
         let myOperation = MyOperation()
