@@ -10,6 +10,8 @@
 		CE0F3FE22606332900EB6029 /* RecentCallsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0F3FE12606332900EB6029 /* RecentCallsTableViewController.swift */; };
 		CE2509EF2610A15600FAE8D6 /* MyOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2509EE2610A15600FAE8D6 /* MyOperation.swift */; };
 		CE2509F72611D01C00FAE8D6 /* ChooseDownloadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2509F62611D01C00FAE8D6 /* ChooseDownloadViewController.swift */; };
+		CE2509FD26149BE500FAE8D6 /* ContactsUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE2509FC26149BE500FAE8D6 /* ContactsUI.framework */; };
+		CE2509FF26149C4000FAE8D6 /* Contacts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE2509FE26149C3F00FAE8D6 /* Contacts.framework */; };
 		CEF9B74326026AD90017AD72 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF9B74226026AD90017AD72 /* AppDelegate.swift */; };
 		CEF9B74526026AD90017AD72 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF9B74426026AD90017AD72 /* SceneDelegate.swift */; };
 		CEF9B74A26026AD90017AD72 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CEF9B74826026AD90017AD72 /* Main.storyboard */; };
@@ -44,7 +46,9 @@
 		CE0F3FE12606332900EB6029 /* RecentCallsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentCallsTableViewController.swift; sourceTree = "<group>"; };
 		CE2509EE2610A15600FAE8D6 /* MyOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyOperation.swift; sourceTree = "<group>"; };
 		CE2509F62611D01C00FAE8D6 /* ChooseDownloadViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseDownloadViewController.swift; sourceTree = "<group>"; };
-		CEF9B73F26026AD90017AD72 /* Contacts.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Contacts.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		CE2509FC26149BE500FAE8D6 /* ContactsUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ContactsUI.framework; path = System/Library/Frameworks/ContactsUI.framework; sourceTree = SDKROOT; };
+		CE2509FE26149C3F00FAE8D6 /* Contacts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Contacts.framework; path = System/Library/Frameworks/Contacts.framework; sourceTree = SDKROOT; };
+		CEF9B73F26026AD90017AD72 /* MyContacts.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyContacts.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEF9B74226026AD90017AD72 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CEF9B74426026AD90017AD72 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		CEF9B74926026AD90017AD72 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -68,6 +72,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE2509FD26149BE500FAE8D6 /* ContactsUI.framework in Frameworks */,
+				CE2509FF26149C4000FAE8D6 /* Contacts.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -88,6 +94,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		CE2509FB26149BE500FAE8D6 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				CE2509FE26149C3F00FAE8D6 /* Contacts.framework */,
+				CE2509FC26149BE500FAE8D6 /* ContactsUI.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		CEF9B73626026AD90017AD72 = {
 			isa = PBXGroup;
 			children = (
@@ -95,13 +110,14 @@
 				CEF9B75826026ADB0017AD72 /* ContactsTests */,
 				CEF9B76326026ADC0017AD72 /* ContactsUITests */,
 				CEF9B74026026AD90017AD72 /* Products */,
+				CE2509FB26149BE500FAE8D6 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
 		CEF9B74026026AD90017AD72 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				CEF9B73F26026AD90017AD72 /* Contacts.app */,
+				CEF9B73F26026AD90017AD72 /* MyContacts.app */,
 				CEF9B75526026ADB0017AD72 /* ContactsTests.xctest */,
 				CEF9B76026026ADC0017AD72 /* ContactsUITests.xctest */,
 			);
@@ -149,9 +165,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		CEF9B73E26026AD90017AD72 /* Contacts */ = {
+		CEF9B73E26026AD90017AD72 /* MyContacts */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = CEF9B76926026ADC0017AD72 /* Build configuration list for PBXNativeTarget "Contacts" */;
+			buildConfigurationList = CEF9B76926026ADC0017AD72 /* Build configuration list for PBXNativeTarget "MyContacts" */;
 			buildPhases = (
 				CEF9B73B26026AD90017AD72 /* Sources */,
 				CEF9B73C26026AD90017AD72 /* Frameworks */,
@@ -161,9 +177,9 @@
 			);
 			dependencies = (
 			);
-			name = Contacts;
+			name = MyContacts;
 			productName = Contacts;
-			productReference = CEF9B73F26026AD90017AD72 /* Contacts.app */;
+			productReference = CEF9B73F26026AD90017AD72 /* MyContacts.app */;
 			productType = "com.apple.product-type.application";
 		};
 		CEF9B75426026ADB0017AD72 /* ContactsTests */ = {
@@ -237,7 +253,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				CEF9B73E26026AD90017AD72 /* Contacts */,
+				CEF9B73E26026AD90017AD72 /* MyContacts */,
 				CEF9B75426026ADB0017AD72 /* ContactsTests */,
 				CEF9B75F26026ADC0017AD72 /* ContactsUITests */,
 			);
@@ -309,12 +325,12 @@
 /* Begin PBXTargetDependency section */
 		CEF9B75726026ADB0017AD72 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = CEF9B73E26026AD90017AD72 /* Contacts */;
+			target = CEF9B73E26026AD90017AD72 /* MyContacts */;
 			targetProxy = CEF9B75626026ADB0017AD72 /* PBXContainerItemProxy */;
 		};
 		CEF9B76226026ADC0017AD72 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = CEF9B73E26026AD90017AD72 /* Contacts */;
+			target = CEF9B73E26026AD90017AD72 /* MyContacts */;
 			targetProxy = CEF9B76126026ADC0017AD72 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -461,12 +477,12 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = Contacts/Info.plist;
+				INFOPLIST_FILE = MyContacts/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.example.Contacts;
+				PRODUCT_BUNDLE_IDENTIFIER = com.example.MyContacts;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -479,12 +495,12 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = Contacts/Info.plist;
+				INFOPLIST_FILE = MyContacts/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.example.Contacts;
+				PRODUCT_BUNDLE_IDENTIFIER = com.example.MyContacts;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -583,7 +599,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		CEF9B76926026ADC0017AD72 /* Build configuration list for PBXNativeTarget "Contacts" */ = {
+		CEF9B76926026ADC0017AD72 /* Build configuration list for PBXNativeTarget "MyContacts" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				CEF9B76A26026ADC0017AD72 /* Debug */,

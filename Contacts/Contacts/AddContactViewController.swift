@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import ContactsUI
+import Contacts
 
 class AddContactViewController: UIViewController {
     
@@ -39,10 +41,23 @@ class AddContactViewController: UIViewController {
     }
     
     @IBAction func saveAndClose(_ sender: UIButton) {
-        if (titleLabel.text == "ADD NEW CONTACT") {
-            performSegue(withIdentifier: "unwindToContactListAndSave", sender: self)
-        } else if (titleLabel.text == "EDIT"){
-            performSegue(withIdentifier: "backToDetailsAndSave", sender: self)
-        }
+                if (titleLabel.text == "ADD NEW CONTACT") {
+                    performSegue(withIdentifier: "unwindToContactListAndSave", sender: self)
+                } else if (titleLabel.text == "EDIT"){
+                    performSegue(withIdentifier: "backToDetailsAndSave", sender: self)
+                    }
+//        let contact1 = CNMutableContact()
+//        contact1.givenName = "Vanya"
+//        print(123)
+//        contact1.familyName = "Sparrow"
+//        contact1.emailAddresses = [CNLabeledValue(label: CNLabelHome, value: NSString(string: "p@p.pl")),CNLabeledValue(label: CNLabelHome, value: NSString(string: "p@p.pl")),CNLabeledValue(label: CNLabelHome, value: NSString(string: "p@p.pl")),CNLabeledValue(label: CNLabelHome, value: NSString(string: "p@p.pl"))]
+//
+//        let store = CNContactStore()
+//        let controller = CNContactViewController(forUnknownContact: contact1)
+//        controller.contactStore = store
+//        //controller.delegate = self
+//        let navigationController = UINavigationController(rootViewController: controller)
+//        self.present(navigationController, animated: true, completion: nil)
     }
 }
+

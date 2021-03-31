@@ -15,8 +15,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "CEF9B73E26026AD90017AD72"
-               BuildableName = "Contacts.app"
-               BlueprintName = "Contacts"
+               BuildableName = "MyContacts.app"
+               BlueprintName = "MyContacts"
                ReferencedContainer = "container:Contacts.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -65,8 +65,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "CEF9B73E26026AD90017AD72"
-            BuildableName = "Contacts.app"
-            BlueprintName = "Contacts"
+            BuildableName = "MyContacts.app"
+            BlueprintName = "MyContacts"
             ReferencedContainer = "container:Contacts.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -82,8 +82,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "CEF9B73E26026AD90017AD72"
-            BuildableName = "Contacts.app"
-            BlueprintName = "Contacts"
+            BuildableName = "MyContacts.app"
+            BlueprintName = "MyContacts"
             ReferencedContainer = "container:Contacts.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
